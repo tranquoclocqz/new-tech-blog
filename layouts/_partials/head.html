@@ -115,3 +115,21 @@ else -}}{{- with site.Params.keywords -}}{{ delimit . ", " }}{{- end -}}{{- end
 
 {{ partial "config/gallery.html" . }} {{ partial "head/css.html" . }} {{
 partial "head/js.html" . }}
+
+<style>/
+#TableOfContents > ul {
+  counter-reset: item;
+}
+
+#TableOfContents li {
+  counter-increment: item;
+}
+
+#TableOfContents li > a::before {
+  content: counters(item, ".") ". ";
+}
+
+#TableOfContents ul ul {
+  counter-reset: item;
+}
+</style>

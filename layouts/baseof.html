@@ -48,9 +48,7 @@
     {{ partial "ui/dock.html" . }}
 
     <!-- 目录卡片 - 只在有目录的页面显示 -->
-    {{- if and .IsPage .TableOfContents }}
-      {{ partial "ui/toc-card.html" . }}
-    {{- end }}
+
     {{ partial "features/katex.html" . }}
     {{ partial "features/mermaid.html" . }}
 
