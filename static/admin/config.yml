@@ -1,3 +1,4 @@
+local_backend: true
 backend:
   name: git-gateway # Dùng cái này để kết nối thông qua Netlify Identity
   branch: main      # Nhớ check xem branch chính của bạn là 'main' hay 'master'
