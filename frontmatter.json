@@ -54,12 +54,6 @@
           "previewImage": true
         },
         {
-          "title": "Mô tả ngắn (Summary)",
-          "name": "summary",
-          "type": "string",
-          "wysiwyg": true
-        },
-        {
           "title": "Danh mục",
           "name": "categories",
           "type": "categories",
