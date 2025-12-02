@@ -41,8 +41,6 @@ else -}}{{- with site.Params.keywords -}}{{ delimit . ", " }}{{- end -}}{{- end
     <link rel="canonical" href="{{ .Permalink }}">
 {{ end }}
 
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
 {{ with site.Params.favicon.svg }}
 <link rel="icon" type="image/svg+xml" href="{{ . }}" />
 {{ else }}
@@ -97,7 +95,15 @@ else -}}{{- with site.Params.keywords -}}{{ delimit . ", " }}{{- end -}}{{- end
     });
   });
 </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W9KE3RHY58"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-W9KE3RHY58');
+</script>
 <link rel="manifest" href="/site.webmanifest" />
 {{ partial "head/seo.html" . }}
 
