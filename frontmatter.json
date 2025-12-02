@@ -2,33 +2,27 @@
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
   "frontMatter.framework.id": "hugo",
   "frontMatter.content.publicFolder": "static",
-  "frontMatter.preview.host": "https://new-tech-blog.vercel.app",
+  "frontMatter.preview.host": "http://localhost:1313",
   "frontMatter.content.pageFolders": [
     {
       "title": "Bài viết (Posts)",
       "path": "[[workspace]]/content/posts",
       "previewPath": "/posts",
-      "contentTypes": ["post"]
+      "contentTypes": [
+        "post"
+      ]
     },
     {
       "title": "Trang tĩnh (Pages)",
       "path": "[[workspace]]/content",
-      "exclude": ["posts", "categories"],
-      "contentTypes": ["page"]
-    },
-    {
-      "title": "SEO Danh mục (Categories)",
-      "path": "[[workspace]]/content/categories",
-      "contentTypes": ["category-term"]
+      "exclude": [
+        "posts",
+        "categories"
+      ],
+      "contentTypes": [
+        "page"
+      ]
     }
-  ],
-  "frontMatter.taxonomy.categories": [
-    "Lập trình Web",
-    "Game Dev",
-    "Thủ thuật máy tính",
-    "Review",
-    "Chuyện nghề",
-    "Khác"
   ],
   "frontMatter.taxonomy.contentTypes": [
     {
@@ -151,5 +145,6 @@
         }
       ]
     }
-  ]
+  ],
+  "frontMatter.git.enabled": true
 }
