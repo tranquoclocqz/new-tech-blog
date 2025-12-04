@@ -1,0 +1,94 @@
+{{/* layouts/partials/seo/schema.html */}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{/* 1. SCHEMA CHUNG CHO TOÀN BỘ WEBSITE (ORGANIZATION / PERSON) */}}
+    {
+      "@type": "Organization",
+      "@id": "{{ .Site.BaseURL }}#organization",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      "sameAs": [],
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ "images/loc-lap-trinh-logo.png" | absURL }}",
+        "width": 512,
+        "height": 512
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ .Site.BaseURL }}#website",
+      "url": "{{ .Site.BaseURL }}",
+      "name": "{{ .Site.Title }}",
+      "description": "{{ .Site.Params.description }}",
+      "publisher": {
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "inLanguage": "{{ .Site.LanguageCode }}"
+    },
+
+    {{/* 2. SCHEMA CHO BÀI VIẾT CHI TIẾT (BLOG POSTING) */}}
+    {{ if .IsPage }}
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ .Permalink }}#article",
+      "isPartOf": {
+        "@id": "{{ .Site.BaseURL }}#website"
+      },
+      "headline": "{{ .Title }}",
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+      },
+      "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ .Params.author | default .Site.Params.author.name }}",
+        "url": "{{ .Site.BaseURL }}"
+      },
+      "publisher": {
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ if .Params.cover }}{{ .Params.cover | absURL }}{{ else }}{{ "images/loc-lap-trinh-logo.png" | absURL }}{{ end }}"
+      },
+      "keywords": "{{ if .Params.keywords }}{{ delimit .Params.keywords ", " }}{{ else }}{{ if .Params.tags }}{{ delimit .Params.tags ", " }}{{ end }}{{ end }}"
+    },
+    {{ end }}
+
+    {{/* 3. SCHEMA BREADCRUMB (ĐƯỜNG DẪN ĐIỀU HƯỚNG) */}}
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ .Permalink }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Trang chủ",
+          "item": "{{ .Site.BaseURL }}"
+        }
+        {{ if .IsPage }}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ .Section | humanize }}",
+          "item": "{{ .Site.BaseURL }}{{ .Section }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ .Title }}",
+          "item": "{{ .Permalink }}"
+        }
+        {{ end }}
+      ]
+    }
+  ]
+}
+</script>
