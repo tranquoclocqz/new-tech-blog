@@ -1,7 +1,10 @@
+# 1. Bật chế độ local
 local_backend: true
+
+# 2. Backend phải để là 'git-gateway' (hoặc 'github'), KHÔNG ĐƯỢC để là 'git'
 backend:
-  name: git # Dùng cái này để kết nối thông qua Netlify Identity
-  branch: main      # Nhớ check xem branch chính của bạn là 'main' hay 'master'
+  name: git-gateway 
+  branch: main
 
 media_folder: "static/images" # Ảnh upload lên sẽ nằm ở đây
 public_folder: "/images" # Đường dẫn ảnh khi hiển thị trên web
