@@ -15,7 +15,7 @@ collections:
     label: "Tools" # Tên hiển thị
     folder: "content/tools" # QUAN TRỌNG: Đường dẫn chứa file markdown bài viết trong Hugo
     create: true # Cho phép tạo bài mới
-    slug: "tools/{{slug}}" # Cấu trúc tên file markdown
+    slug: "{{slug}}" # Cấu trúc tên file markdown
     fields: # Các trường dữ liệu sẽ hiện trong trang Admin
       - { label: "Tiêu đề", name: "title", widget: "string" }
       - label: "Custom URL (Slug)"

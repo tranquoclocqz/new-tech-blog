@@ -1,7 +1,8 @@
 <!doctype html>
 <html
   lang="{{ site.LanguageCode }}"
-  data-theme="{{ site.Params.colorScheme | default "default" }}">
+  data-theme="{{ site.Params.colorScheme | default "default" }}"
+  class="dark">
   <head>
     {{ partial "head.html" . }}
     <script>
@@ -38,7 +39,7 @@
 
     {{ partial "navigation/header.html" . }}
 
-    <main class="mx-auto max-w-4xl px-4 py-6">
+    <main class="mx-auto {{ if .Params.fullWidth }}w-full max-w-[1600px] px-4 md:px-8{{ else }}max-w-4xl px-4{{ end }} py-6">
       {{ block "main" . }}{{ end }}
     </main>
 

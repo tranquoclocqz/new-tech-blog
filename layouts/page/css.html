@@ -1,0 +1,177 @@
+{{ define "main" }}
+<h1 class="text-3xl font-bold mb-8 text-center">{{ .Title }}</h1>
+<div>
+  <div class="mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 flex flex-col">
+        <div class="flex flex-wrap justify-end items-center gap-2 mb-2 text-sm">
+          <label class="flex items-center gap-1 cursor-pointer mr-2">
+            <input
+              type="checkbox"
+              checked
+              class="accent-primary"
+              id="highlightCode"
+            />
+            <span>Hiển thị mã nhấn mạnh ?</span>
+          </label>
+          <button
+            class="cursor-pointer px-3 py-1 text-[#112A46] bg-primary rounded-sm font-medium hover:bg-gray-900 hover:text-white transition"
+            onclick="clearField('cssBox');"
+          >
+            Xóa Hết
+          </button>
+          <button
+            class="cursor-pointer px-3 py-1 text-[#112A46] bg-primary rounded-sm font-medium hover:bg-gray-900 hover:text-white transition"
+            onclick="copyTextareaToClipboard('cssBox')"
+            id="btnCopy"
+          >
+            Sao chép
+          </button>
+        </div>
+
+        <textarea
+          class="w-full h-[534px] p-3 border border-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary shadow-inner resize-none font-mono text-sm bg-card/80"
+          placeholder="Dán code CSS của bạn vào đây..."
+          id="cssBox"
+        ></textarea>
+      </div>
+
+      <div class="lg:col-span-1 space-y-6">
+        <div
+          class="border-2 border-dashed border-gray-500 rounded-lg p-5 bg-card/80"
+        >
+          <div class="space-y-2 text-sm mb-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                class="accent-primary"
+                id="stripAllComment"
+              />
+              <span>Gỡ bỏ tất cả chú thích</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-primary" id="superCompact" />
+              <span>Nén siêu gọn</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                class="accent-primary"
+                id="betterIndentation"
+              />
+              <span
+                >Giữ thụt đầu dòng trong
+                <code class="text-primary">@query {}</code>
+              </span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked
+                class="accent-primary"
+                id="keepLastComma"
+              />
+              <span>Loại bỏ các dấu chấm phẩy cuối cùng</span>
+            </label>
+          </div>
+
+          <div class="text-center">
+            <button
+              class="px-3 py-2 font-medium cursor-pointer text-lg font-bold rounded-md hover:bg-gray-900 transition duration-150 shadow-lg w-full cursor-pointer bg-primary w-full block text-[#112A46] hover:text-white"
+              onclick="compressCSS('cssBox');"
+            >
+              Nén CSS
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="border-2 border-dashed border-gray-500 rounded-lg p-5 bg-card/80"
+        >
+          <div class="space-y-2 text-sm mb-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-primary" id="inlineLayout" />
+              <span>Hình thức bố cục nội dòng</span>
+            </label>
+
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                class="accent-primary"
+                id="toTab"
+                onchange="beautifyCSS('cssBox');"
+              />
+              <span>Thụt đầu dòng:</span>
+            </label>
+
+            <div class="ml-6 flex items-center gap-4" id="tabOpts">
+              <label class="flex items-center gap-1 cursor-pointer">
+                <input
+                  id="op-1"
+                  type="radio"
+                  name="indent"
+                  class="accent-primary"
+                  onchange="beautifyCSS('cssBox');"
+                  disabled
+                />
+                <span>Một Tab</span>
+              </label>
+              <label class="flex items-center gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="indent"
+                  checked
+                  class="accent-primary"
+                  id="op-2"
+                  onchange="beautifyCSS('cssBox');"
+                  disabled
+                />
+                <span>4 dấu cách</span>
+              </label>
+            </div>
+
+            <label class="flex items-center gap-2 cursor-pointer mt-2">
+              <input type="checkbox" checked class="accent-primary" id="breakSelector" onchange="beautifyCSS('cssBox');"/>
+              <span
+                >Chia đa bộ chọn (e.g:
+                <code class="text-primary">html,\nbody,\ntable {}</code>)
+              </span>
+            </label>
+
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-primary" id="spaceBetween" onchange="beautifyCSS('cssBox');"/>
+              <span>Khoảng cách giữa thuộc tính : giá trị ;</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-primary" id="inlineSingleProp" onchange="beautifyCSS('cssBox');"/>
+              <span>Viết cùng dòng khi chỉ có một thuộc tính</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-primary" id="removeLastSemicolon" onchange="beautifyCSS('cssBox');"/>
+              <span>Xóa các dấu chấm phẩy cuối cùng</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-primary" id="singleBreak" onchange="beautifyCSS('cssBox');"/>
+              <span>Xóa hoặc tạo khoảng cách mỗi dòng</span>
+            </label>
+          </div>
+
+          <div class="text-center">
+            <button
+              class="px-3 py-2 font-medium cursor-pointer text-lg font-bold rounded-md hover:bg-gray-900 transition duration-150 shadow-lg w-full cursor-pointer bg-primary w-full block text-[#112A46] hover:text-white"
+              onclick="beautifyCSS('cssBox')"
+            >
+              Làm đẹp CSS
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mx-auto max-w-4xl">
+  <article class="prose prose-neutral dark:prose-invert max-w-none mt-4 sm:px-4">
+    {{ .Content }}
+  </article>
+</div>
+{{ end }}

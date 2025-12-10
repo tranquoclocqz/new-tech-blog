@@ -10,6 +10,7 @@ enableEmoji: true
 
 permalinks:
   posts: /:slug/
+  tools: /tools/:slug/
   pages: /:slug/
   
 # pagination
@@ -35,16 +36,21 @@ menus:
       weight: 20
       params:
         icon: posts
-    - name: nav.categories
-      pageRef: /categories
-      weight: 30
+    - name: "Tools"
+      pageRef: /tools
+      weight: 20
       params:
-        icon: categories
-    - name: nav.tags
-      pageRef: /tags
-      weight: 40
-      params:
-        icon: tags
+        icon: posts
+    # - name: nav.categories
+    #   pageRef: /categories
+    #   weight: 30
+    #   params:
+    #     icon: categories
+    # - name: nav.tags
+    #   pageRef: /tags
+    #   weight: 40
+    #   params:
+    #     icon: tags
 
   # footer menu
   footer:
@@ -136,9 +142,9 @@ params:
     #     icon: "email"
 
   # UI Components Control
-  showThemeSwitch: true      # Set to false to hide theme style switcher (palette icon)
-  showDarkModeSwitch: true   # Set to false to hide dark mode switcher (sun/moon icon)
-  showLanguageSwitch: true   # Set to false to hide language switcher
+  showThemeSwitch: false      # Set to false to hide theme style switcher (palette icon)
+  showDarkModeSwitch: false   # Set to false to hide dark mode switcher (sun/moon icon)
+  showLanguageSwitch: false   # Set to false to hide language switcher
   languageSwitchMode: "dropdown"  # Language switch mode: "dropdown" (show panel) or "cycle" (direct cycle)
 
   # Header sticky effect

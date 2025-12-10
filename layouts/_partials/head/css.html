@@ -72,3 +72,6 @@
 {{ if .Scratch.Get "lightboxEnabled" }}
   <link rel="stylesheet" href="/css/glightbox.min.css">
 {{ end }}
+{{ if eq .Params.layout "css"}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+{{ end }}
