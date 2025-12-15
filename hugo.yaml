@@ -2,7 +2,7 @@ baseURL: https://loclaptrinh.com/
 languageCode: vi-VN
 defaultContentLanguage: vi
 defaultContentLanguageInSubdir: false
-title: "Lộc lập trình"
+title: "Blog chia sẽ kiến thức, đánh giá, và các theme trong ngành lập trình web từ cơ bản đến nâng cao"
 enableRobotsTXT: true
 
 hasCJKLanguage: true
