@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Background Generator Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden;
+            background: #0f172a; font-family: 'Roboto', sans-serif;
+            transition: background 0.5s ease;
+        }
+
+        #background-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+
+        #center-text-container {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 90%; text-align: center; z-index: 1; pointer-events: none;
+        }
+
+        #main-text {
+            color: white; 
+            /* Font-size và Line-height sẽ được JS điều khiển */
+            font-size: 5vw; 
+            line-height: 1.2;
+            font-weight: 700; text-transform: uppercase;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6); margin: 0;
+            white-space: pre-wrap; letter-spacing: 2px;
+            transition: all 0.1s ease; /* Hiệu ứng mượt khi kéo slider */
+        }
+
+        /* Bảng điều khiển */
+        #controls {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.85); padding: 20px; border-radius: 16px;
+            display: flex; flex-direction: column; gap: 15px; align-items: center;
+            z-index: 100; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6); width: 90%; max-width: 600px;
+            max-height: 60vh; overflow-y: auto;
+        }
+
+        .control-row { display: flex; gap: 10px; align-items: center; width: 100%; justify-content: center; flex-wrap: wrap; }
+
+        /* Style cho Textarea */
+        textarea#text-input {
+            padding: 10px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.5); color: white; font-family: 'Roboto', sans-serif;
+            font-weight: bold; outline: none; width: 100%; text-align: center; font-size: 16px;
+            resize: vertical; min-height: 60px;
+        }
+
+        /* Style cho Range Slider */
+        .slider-group {
+            display: flex; align-items: center; gap: 10px; flex: 1; min-width: 200px;
+            background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;
+        }
+        .slider-group label { color: #cbd5e1; font-size: 13px; white-space: nowrap; font-weight: bold; }
+        input[type="range"] {
+            flex: 1; cursor: pointer; height: 6px; border-radius: 5px; background: rgba(255,255,255,0.2);
+            -webkit-appearance: none; appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #fff; cursor: pointer;
+        }
+
+        #palette-container { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .color-btn {
+            width: 35px; height: 35px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .color-btn.active { border-color: #4ade80; transform: scale(1.1); }
+
+        .btn-action {
+            padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;
+            font-weight: bold; font-size: 14px; transition: background 0.2s; flex: 1; min-width: 120px;
+        }
+        #regenerate { background: white; color: #0f172a; }
+        #download-btn { background: #ea580c; color: white; }
+    </style>
+</head>
+<body>
+
+    <svg id="background-container" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <style> .def-shape { fill: none; stroke: white; stroke-width: 2; vector-effect: non-scaling-stroke; } </style>
+            <polygon id="def-star" class="def-shape" points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" />
+            <polygon id="def-hex" class="def-shape" points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" />
+        </defs>
+    </svg>
+
+    <div id="center-text-container">
+        <h1 id="main-text">HECKER CODE</h1>
+    </div>
+
+    <div id="controls">
+        <div class="control-row">
+            <textarea id="text-input" placeholder="Nhập nội dung...">HECKER CODE</textarea>
+        </div>
+        
+        <div class="control-row">
+            <div class="slider-group">
+                <label>Cỡ chữ:</label>
+                <input type="range" id="font-size-range" min="2" max="15" step="0.5" value="5">
+            </div>
+            <div class="slider-group">
+                <label>Dãn dòng:</label>
+                <input type="range" id="line-height-range" min="0.8" max="3.0" step="0.1" value="1.2">
+            </div>
+        </div>
+
+        <div class="control-row" id="palette-container"></div>
+        
+        <div class="control-row">
+            <button id="regenerate" class="btn-action">🎲 Random Lại</button>
+            <button id="download-btn" class="btn-action">📸 Xuất Ảnh JPG (HD)</button>
+        </div>
+    </div>
+
+    <script>
+        const CONFIG = {
+            minShapes: 20, maxShapes: 40,
+            minSize: 0.4, maxSize: 1.8,
+            minOpacity: 0.1, maxOpacity: 0.5,
+            gradients: [
+                { css: 'linear-gradient(135deg, #0f172a, #3b0764)', colors: ['#0f172a', '#3b0764'] },
+                { css: 'linear-gradient(135deg, #064e3b, #172554)', colors: ['#064e3b', '#172554'] },
+                { css: 'linear-gradient(135deg, #2e1065, #831843)', colors: ['#2e1065', '#831843'] },
+                { css: 'linear-gradient(135deg, #431407, #7f1d1d)', colors: ['#431407', '#7f1d1d'] },
+                { css: 'linear-gradient(135deg, #042f2e, #14532d)', colors: ['#042f2e', '#14532d'] },
+                { css: 'linear-gradient(135deg, #1e1b4b, #4c1d95)', colors: ['#1e1b4b', '#4c1d95'] },
+                { css: 'linear-gradient(135deg, #831843, #881337)', colors: ['#831843', '#881337'] },
+                { css: 'linear-gradient(135deg, #083344, #1e3a8a)', colors: ['#083344', '#1e3a8a'] }
+            ]
+        };
+
+        let currentGradientIndex = 0;
+        const svgContainer = document.getElementById('background-container');
+        const textInput = document.getElementById('text-input');
+        const mainText = document.getElementById('main-text');
+        const fontSizeRange = document.getElementById('font-size-range');
+        const lineHeightRange = document.getElementById('line-height-range');
+        const paletteContainer = document.getElementById('palette-container');
+        const regenBtn = document.getElementById('regenerate');
+        const downloadBtn = document.getElementById('download-btn');
+
+        function randomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+        function randomFloat(min, max) { return Math.random() * (max - min) + min; }
+
+        function createRandomShape() {
+            const types = ['circle', 'rect', 'star', 'hex'];
+            const type = types[randomInt(0, types.length - 1)];
+            const svgNS = "http://www.w3.org/2000/svg";
+            let shape;
+
+            if (type === 'circle') {
+                shape = document.createElementNS(svgNS, 'circle');
+                shape.setAttribute('r', 40); shape.setAttribute('cx', 0); shape.setAttribute('cy', 0);
+            } else if (type === 'rect') {
+                shape = document.createElementNS(svgNS, 'rect');
+                shape.setAttribute('width', 70); shape.setAttribute('height', 70);
+                shape.setAttribute('x', -35); shape.setAttribute('y', -35);
+            } else if (type === 'star') {
+                shape = document.createElementNS(svgNS, 'use');
+                shape.setAttribute('href', '#def-star'); shape.setAttribute('x', -50); shape.setAttribute('y', -50);
+            } else if (type === 'hex') {
+                shape = document.createElementNS(svgNS, 'use');
+                shape.setAttribute('href', '#def-hex'); shape.setAttribute('x', -50); shape.setAttribute('y', -50);
+            }
+
+            shape.setAttribute('fill', 'none');
+            shape.setAttribute('stroke', 'white');
+            shape.setAttribute('stroke-width', '2');
+            
+            const scale = randomFloat(CONFIG.minSize, CONFIG.maxSize);
+            const rotate = randomInt(0, 360);
+            const opacity = randomFloat(CONFIG.minOpacity, CONFIG.maxOpacity);
+            const randomX = randomFloat(0, 100);
+            const randomY = randomFloat(0, 100);
+
+            shape.style.opacity = opacity;
+            shape.style.transform = `translate(${randomX}vw, ${randomY}vh) rotate(${rotate}deg) scale(${scale})`;
+            shape.style.transformOrigin = 'center';
+
+            return shape;
+        }
+
+        function generateBackground() {
+            while (svgContainer.lastChild && svgContainer.lastChild.nodeName !== 'defs') {
+                svgContainer.removeChild(svgContainer.lastChild);
+            }
+            const count = randomInt(CONFIG.minShapes, CONFIG.maxShapes);
+            for (let i = 0; i < count; i++) {
+                svgContainer.appendChild(createRandomShape());
+            }
+        }
+
+        function exportImage() {
+            const canvas = document.createElement('canvas');
+            const WIDTH = 1280;
+            const HEIGHT = 720;
+            canvas.width = WIDTH;
+            canvas.height = HEIGHT;
+            const ctx = canvas.getContext('2d');
+
+            // 1. Vẽ Gradient
+            const colors = CONFIG.gradients[currentGradientIndex].colors;
+            const gradient = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+            gradient.addColorStop(0, colors[0]);
+            gradient.addColorStop(1, colors[1]);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+            // 2. Vẽ SVG
+            const clonedSvg = svgContainer.cloneNode(true);
+            clonedSvg.setAttribute('width', WIDTH);
+            clonedSvg.setAttribute('height', HEIGHT);
+            const shapes = clonedSvg.querySelectorAll('*');
+            shapes.forEach(shape => {
+               const style = shape.style.transform;
+               if(style && style.includes('vw')) {
+                   const newTrans = style.replace(/([\d.]+)vw/g, (match, p1) => (parseFloat(p1) * WIDTH / 100) + 'px')
+                                         .replace(/([\d.]+)vh/g, (match, p1) => (parseFloat(p1) * HEIGHT / 100) + 'px');
+                   shape.style.transform = newTrans;
+               }
+            });
+
+            const svgData = new XMLSerializer().serializeToString(clonedSvg);
+            const img = new Image();
+            const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svgBlob);
+
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, WIDTH, HEIGHT);
+                
+                // 3. Vẽ Text (Tính toán chính xác theo Slider)
+                const textVal = textInput.value || "HECKER CODE";
+                
+                // Lấy giá trị từ slider
+                const vwSize = parseFloat(fontSizeRange.value);
+                const lineHeightMultiplier = parseFloat(lineHeightRange.value);
+
+                // Quy đổi vw sang px trên canvas 1280
+                // Công thức: 1vw = 1% chiều rộng canvas
+                const fontSizePx = (WIDTH * vwSize) / 100;
+                const lineHeightPx = fontSizePx * lineHeightMultiplier;
+
+                ctx.font = `bold ${fontSizePx}px 'Roboto', Arial, sans-serif`;
+                ctx.fillStyle = "white";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.shadowColor = "rgba(0,0,0,0.6)";
+                ctx.shadowBlur = 15;
+                ctx.shadowOffsetY = 4;
+
+                const lines = textVal.split('\n');
+                const totalHeight = lines.length * lineHeightPx;
+                // Căn giữa theo chiều dọc dựa trên tổng chiều cao text
+                // Điều chỉnh startY để dòng đầu tiên bắt đầu đúng vị trí
+                let startY = (HEIGHT / 2) - (totalHeight / 2) + (lineHeightPx / 2);
+
+                lines.forEach((line, i) => {
+                    ctx.fillText(line.toUpperCase(), WIDTH / 2, startY + (i * lineHeightPx));
+                });
+
+                const link = document.createElement('a');
+                link.download = `background-hecker-${Date.now()}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+                link.click();
+                URL.revokeObjectURL(url);
+            };
+            img.src = url;
+        }
+
+        // --- EVENTS ---
+        
+        // Cập nhật Live Preview khi kéo slider
+        fontSizeRange.addEventListener('input', (e) => {
+            mainText.style.fontSize = e.target.value + 'vw';
+        });
+
+        lineHeightRange.addEventListener('input', (e) => {
+            mainText.style.lineHeight = e.target.value;
+        });
+
+        CONFIG.gradients.forEach((item, index) => {
+            const btn = document.createElement('div');
+            btn.className = 'color-btn';
+            btn.style.background = item.css;
+            if (index === 0) btn.classList.add('active');
+            btn.onclick = () => {
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.body.style.background = item.css;
+                currentGradientIndex = index;
+            };
+            paletteContainer.appendChild(btn);
+        });
+
+        textInput.addEventListener('input', (e) => mainText.textContent = e.target.value || '');
+        regenBtn.addEventListener('click', generateBackground);
+        downloadBtn.addEventListener('click', exportImage);
+
+        generateBackground();
+        document.body.style.background = CONFIG.gradients[0].css;
+    </script>
+</body>
+</html>
