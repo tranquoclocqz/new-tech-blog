@@ -222,4 +222,4 @@ Ví dụ: Kiểm tra dữ liệu đầu vào, tính toán thuế, gửi email, l
 
 Controller là trạm trung chuyển quan trọng nhất trong Laravel. Nắm vững cách sử dụng Controller và đặc biệt là **Resource Controller** sẽ giúp bạn xây dựng ứng dụng cực nhanh theo đúng chuẩn RESTful.
 
-Ở bài tiếp theo, chúng ta sẽ đi sâu vào **View** và tìm hiểu về **Blade Template Engine** - công cụ giúp bạn tạo ra giao diện website tuyệt đẹp mà không cần code PHP lộn xộn.
+Ở bài tiếp theo, chúng ta sẽ đi sâu vào **View** và tìm hiểu về **[Blade Template Engine](/blade-template-engine-laravel-toan-tap/)** - công cụ giúp bạn tạo ra giao diện website tuyệt đẹp mà không cần code PHP lộn xộn.
