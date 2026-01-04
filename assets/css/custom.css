@@ -1,0 +1,5 @@
+.prose ol li ul,
+.prose ol li ol {
+    counter-reset: item;
+    padding-left: 0;
+}
