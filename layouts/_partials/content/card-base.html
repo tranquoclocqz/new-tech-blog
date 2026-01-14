@@ -45,12 +45,12 @@
     <div class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none">
       <!-- 移动端顶部封面 -->
       <div class="block md:hidden">
-        {{ partial "content/card-image.html" (dict "page" $page "type" "mobile" "coverImage" $coverImage "randomImage" $randomImage "useRandomImage" $useRandomImage "gradients" $gradients "colorIndex" $colorIndex) }}
+        {{ partial "content/card-image.html" (dict "page" $page "type" "mobile" "coverImage" $coverImage "randomImage" $randomImage "useRandomImage" $useRandomImage "gradients" $gradients "colorIndex" $colorIndex "lcp" .lcp) }}
       </div>
 
       <!-- 桌面端右侧封面 -->
       <div class="absolute top-0 right-0 hidden h-full w-80 transition-opacity duration-300 group-hover:opacity-90 md:block">
-        {{ partial "content/card-image.html" (dict "page" $page "type" "desktop" "coverImage" $coverImage "randomImage" $randomImage "useRandomImage" $useRandomImage "gradients" $gradients "colorIndex" $colorIndex) }}
+        {{ partial "content/card-image.html" (dict "page" $page "type" "desktop" "coverImage" $coverImage "randomImage" $randomImage "useRandomImage" $useRandomImage "gradients" $gradients "colorIndex" $colorIndex "lcp" .lcp) }}
       </div>
 
       <!-- 桌面端悬浮时的填充颜色遮罩 -->

@@ -85,7 +85,15 @@
   "from-pink-500/20 to-rose-500/10" 
   "from-cyan-500/20 to-blue-500/10" -}}
 {{- $colorIndex := mod (int (substr $hash 4 2 | printf "0x%s")) (len $gradients) -}}
+{{/* Đặt mặc định là lazy load */}}
+{{ $loading := "lazy" }}
+{{ $priority := "auto" }}
 
+{{/* Nếu biến lcp được truyền vào là true, đổi sang eager load */}}
+{{ if .lcp }}
+  {{ $loading = "eager" }}
+  {{ $priority = "high" }}
+{{ end }}
 <div class="{{ $containerClass }}">
   {{- if $coverImage -}}
     <!-- 文章封面图 -->
@@ -93,7 +101,8 @@
       src="{{ $coverImage }}"
       alt="{{ $page.Title }}"
       class="h-full w-full object-cover{{ if ne $type "desktop" }} transition-transform duration-300 group-hover:scale-105{{ end }}"
-      loading="lazy"
+      loading="{{ $loading }}" 
+      fetchpriority="{{ $priority }}"
       onerror="this.style.display='none'; this.nextElementSibling.style.display='{{ if eq $type `related` }}flex{{ else }}block{{ end }}';" />
     <!-- 封面图加载失败时的几何占位图回退 -->
     <div class="{{ index $gradients $colorIndex }} relative {{ $aspectClass }} overflow-hidden bg-gradient-to-br" style="display: none; background-blend-mode: overlay; background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);">

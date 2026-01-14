@@ -27,8 +27,9 @@
 
     <!-- 文章卡片列表 -->
     <div class="space-y-4">
-      {{ range $posts }}
-        {{ partial "content/card-base.html" (dict "page" .) }}
+      {{ range $index, $element := $posts }}
+        {{ $isLCP := eq $index 0 }}
+        {{ partial "content/card-base.html" (dict "page" $element "lcp" $isLCP) }}
       {{ end }}
     </div>
 
