@@ -30,7 +30,8 @@
             /* Font-size và Line-height sẽ được JS điều khiển */
             font-size: 5vw; 
             line-height: 1.2;
-            font-weight: 700; text-transform: uppercase;
+            font-weight: 700; 
+            /* text-transform: uppercase; */
             text-shadow: 0 4px 15px rgba(0,0,0,0.6); margin: 0;
             white-space: pre-wrap; letter-spacing: 2px;
             transition: all 0.1s ease; /* Hiệu ứng mượt khi kéo slider */
@@ -107,11 +108,11 @@
         <div class="control-row">
             <div class="slider-group">
                 <label>Cỡ chữ:</label>
-                <input type="range" id="font-size-range" min="2" max="15" step="0.5" value="5">
+                <input type="range" id="font-size-range" min="2" max="15" step="0.5" value="10">
             </div>
             <div class="slider-group">
                 <label>Dãn dòng:</label>
-                <input type="range" id="line-height-range" min="0.8" max="3.0" step="0.1" value="1.2">
+                <input type="range" id="line-height-range" min="0.8" max="3.0" step="0.1" value="2.4">
             </div>
         </div>
 
@@ -266,7 +267,7 @@
                 let startY = (HEIGHT / 2) - (totalHeight / 2) + (lineHeightPx / 2);
 
                 lines.forEach((line, i) => {
-                    ctx.fillText(line.toUpperCase(), WIDTH / 2, startY + (i * lineHeightPx));
+                    ctx.fillText(line, WIDTH / 2, startY + (i * lineHeightPx));
                 });
 
                 const link = document.createElement('a');
