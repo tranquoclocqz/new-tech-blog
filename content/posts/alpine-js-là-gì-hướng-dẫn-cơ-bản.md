@@ -3,6 +3,7 @@ title: Alpine.js là gì? Hướng dẫn cơ bản
 slug: alpine-js-la-gi-huong-dan-co-ban
 date: 2026-01-12T20:47:00.000+07:00
 cover: /images/alpine-js-la-gi-huong-dan-co-ban.jpg
+image_mobile: /images/alpine-js-la-gi-huong-dan-co-ban_mobile.jpg
 summary: Bạn muốn sự tiện lợi của Vue.js nhưng không muốn cài đặt Node_modules
   phức tạp? Alpine.js chính là câu trả lời. Nhẹ, mạnh mẽ và viết code JS ngay
   trong HTML

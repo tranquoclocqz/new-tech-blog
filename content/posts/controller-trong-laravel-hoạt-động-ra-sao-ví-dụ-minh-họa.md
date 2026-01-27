@@ -3,6 +3,7 @@ title: Controller trong Laravel là gì? Hướng dẫn xử lý logic trong mô
 slug: controller-trong-laravel-la-gi
 date: 2026-01-04T14:39:00.000+07:00
 cover: /images/controller-trong-laravel-la-gi.jpg
+image_mobile: /images/controller-trong-laravel-la-gi_mobile.jpg
 summary: Controller đóng vai trò gì trong Laravel? Tại sao nên dùng Resource
   Controller? Hướng dẫn chi tiết cách tạo và sử dụng Controller để xử lý logic
   ứng dụng.

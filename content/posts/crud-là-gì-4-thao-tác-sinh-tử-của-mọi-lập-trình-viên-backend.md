@@ -3,6 +3,7 @@ title: CRUD là gì? 4 thao tác 'sinh tử' của mọi lập trình viên Back
 slug: crud-la-gi
 date: 2025-12-22T22:02:00.000+07:00
 cover: /images/crud-la-gi.jpg
+image_mobile: /images/crud-la-gi_mobile.jpg
 summary: "Mọi ứng dụng trên đời từ Facebook, Shopee đến các phần mềm ngân hàng
   đều vận hành xoay quanh 4 chữ cái: C-R-U-D. Nếu không nắm vững CRUD, bạn không
   thể trở thành Backend Developer."

@@ -9,10 +9,11 @@ meta:
 title: Blade Template là gì? Cẩm nang toàn tập các câu lệnh Blade trong Laravel
 slug: blade-template-engine-laravel-toan-tap
 date: 2026-01-04T21:04:00.000+07:00
+cover: /images/blade-template-engine-laravel-toan-tap.jpg
+image_mobile: /images/blade-template-engine-laravel-toan-tap_mobile.jpg
 summary: Tổng hợp toàn bộ các câu lệnh (Directives) trong Blade Template. Hướng
   dẫn cách sử dụng Layout, Component, Loop và các mẹo xử lý View cực nhanh.
 layout: single
-cover: /images/blade-template-engine-laravel-toan-tap.jpg
 categories: []
 tags: []
 description: "Blade Template là gì? Tổng hợp tất cả các câu lệnh Blade: @if,

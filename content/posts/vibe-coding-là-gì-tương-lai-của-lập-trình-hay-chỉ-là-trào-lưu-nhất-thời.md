@@ -3,6 +3,7 @@ title: Vibe Coding là gì? Tương lai của lập trình hay chỉ là trào l
 slug: vibe-coding-la-gi
 date: 2025-12-08T20:17:00.000+07:00
 cover: /images/vibe-coding-la-gi.jpg
+image_mobile: /images/vibe-coding-la-gi_mobile.jpg
 summary: Vibe Coding đang thay đổi cách chúng ta viết code. Không cần giỏi cú
   pháp, chỉ cần 'cảm giác' đúng. Liệu đây có phải là dấu chấm hết cho lập trình
   viên truyền thống?

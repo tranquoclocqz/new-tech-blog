@@ -4,6 +4,7 @@ title: "Sự thoái trào của jQuery: Tại sao 'Huyền thoại' một thời
 slug: tai-sao-jquery-khong-con-duoc-sung-ai
 date: 2026-01-10T13:18:00.000+07:00
 cover: /images/tai-sao-jquery-khong-con-duoc-sung-ai.jpg
+image_mobile: /images/tai-sao-jquery-khong-con-duoc-sung-ai_mobile.jpg
 summary: Đã từng có thời điểm 90% website trên thế giới chạy bằng jQuery. Nhưng
   giờ đây, nó bị coi là 'công nghệ cũ'. Điều gì đã giết chết jquery? Vanilla JS
   hay React/Vue?

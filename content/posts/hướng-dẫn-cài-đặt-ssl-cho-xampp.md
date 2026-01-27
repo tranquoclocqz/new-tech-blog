@@ -3,6 +3,7 @@ title: Hướng dẫn cài đặt SSL cho XAMPP (windows)
 slug: huong-dan-cai-dat-ssl-cho-xampp-windows
 date: 2025-12-31T21:33:00.000+07:00
 cover: /images/huong-dan-cai-dat-ssl-cho-xampp-windows.jpg
+image_mobile: /images/huong-dan-cai-dat-ssl-cho-xampp-windows_mobile.jpg
 summary: "Tạm biệt đường dẫn localhost nhàm chán. Bài viết này sẽ giúp bạn sở
   hữu domain ảo cực xịn (ví dụ: loclaptrinh.test) với ổ khóa xanh HTTPS ngay
   trên máy tính cá nhân."

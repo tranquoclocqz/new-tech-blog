@@ -3,6 +3,7 @@ title: "So sánh Tailwind CSS v4 và v3: Cuộc cách mạng về tốc độ v�
 slug: so-sanh-tailwindcss-v4-va-v3
 date: 2025-12-15T18:28:00.000+07:00
 cover: /images/so-sanh-tailwindcss-v4-va-v3.jpg
+image_mobile: /images/so-sanh-tailwindcss-v4-va-v3_mobile.jpg
 summary: Nếu như Tailwind CSS v3 đưa framework này lên vị thế hàng đầu trong
   giới Frontend nhờ trình biên dịch JIT (Just-In-Time), thì Tailwind CSS v4
   không chỉ là một bản nâng cấp đơn thuần. Đây là một cuộc cải tổ toàn diện,

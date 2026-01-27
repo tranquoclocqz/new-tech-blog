@@ -15,7 +15,7 @@ permalinks:
   
 # pagination
 pagination:
-  pagerSize: 5
+  pagerSize: 10
   path: "paged"
 
 languages:

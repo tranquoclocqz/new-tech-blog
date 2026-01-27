@@ -3,6 +3,7 @@ title: Mô hình MVC là gì? Giải thích dễ hiểu nhất qua ví dụ Nhà
 slug: mo-hinh-mvc-la-gi
 date: 2025-12-22T21:59:00.000+07:00
 cover: /images/mo-hinh-mvc-la-gi.jpg
+image_mobile: /images/mo-hinh-mvc-la-gi_mobile.jpg
 summary: "Bạn nghe nhiều về MVC nhưng vẫn mơ hồ? Hãy tưởng tượng code giống như
   một nhà hàng: Có đầu bếp, phục vụ và thực khách. Bài viết này sẽ giúp bạn hiểu
   sâu về mô hình MVC chỉ trong 5 phút."

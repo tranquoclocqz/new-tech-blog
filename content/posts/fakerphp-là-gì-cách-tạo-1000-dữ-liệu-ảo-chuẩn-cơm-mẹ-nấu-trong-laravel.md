@@ -3,6 +3,7 @@ title: FakerPHP là gì? Cách tạo 1000 dữ liệu ảo chuẩn cơm mẹ n�
 slug: fakerphp-la-gi-cach-tao-1000-du-lieu-ao-chuan-com-me-nau-trong-laravel
 date: 2026-01-14T20:03:00.000+07:00
 cover: /images/fakerphp-la-gi-cach-tao-1000-du-lieu-ao-chuan-com-me-nau-trong-laravel.jpg
+image_mobile: /images/fakerphp-la-gi-cach-tao-1000-du-lieu-ao-chuan-com-me-nau-trong-laravel_mobile.jpg
 summary: Bạn mệt mỏi vì phải nhập tay từng dòng dữ liệu 'test1', 'test2' để chạy
   thử web? Hãy để FakerPHP và Laravel Factory giúp bạn tạo ra hàng nghìn dữ liệu
   mẫu chỉ trong 1 cú Enter.
