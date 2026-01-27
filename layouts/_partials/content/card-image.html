@@ -42,7 +42,15 @@
 
 {{/* 如果没有提供coverImage，按优先级处理图片 */}}
 {{- if not $coverImage -}}
-  {{- if $page.Params.cover -}}
+  {{- if $page.Params.image_mobile -}}
+    {{- partial "content/image-processor.html" (dict
+      "context" $page
+      "src" $page.Params.image_mobile
+      "enablePlaceholder" true
+      "outputType" "data"
+    ) -}}
+    {{- $coverImage = $page.Scratch.Get "imageUrl" -}}
+  {{- else if $page.Params.cover -}}
     {{- partial "content/image-processor.html" (dict
       "context" $page
       "src" $page.Params.cover

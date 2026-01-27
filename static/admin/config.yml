@@ -87,7 +87,9 @@ collections:
           name: "cover",
           widget: "image",
           required: false,
+          hint: "Kích thước 864x486"
         }
+      - {label: "Ảnh đại diện (Mobile)", name: "image_mobile", widget: "image", required: false, hint: "Kích thước 662x372"}
       - {
           label: "Mô tả ngắn",
           name: "summary",

@@ -4,6 +4,7 @@ title: "Chia sẻ Script hiệu ứng 'Mưa Hoa Rơi' trang trí Tết 2026: Ch�
 slug: code-hieu-ung-hoa-roi-tet-2026
 date: 2026-01-27T16:06:00.000+07:00
 cover: /images/code-hieu-ung-hoa-roi-tet-2026.jpg
+image_mobile: /images/code-hieu-ung-hoa-roi-tet-2026_mobile.jpg
 summary: Trang trí website đón Tết 2026 với hiệu ứng hoa Mai, hoa Đào rơi tuyệt
   đẹp. Code đã được tối ưu hóa, chỉ cần nhúng 1 dòng script là xong.
 description: Chia sẻ script hiệu ứng hoa rơi (Hoa Đào, Hoa Mai) cho website dịp

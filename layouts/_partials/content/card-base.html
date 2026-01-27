@@ -4,11 +4,19 @@
 
 {{ $page := .page }}
 
+{{/* Sử dụng image_mobile nếu có, fallback về cover */}}
+{{- $imageSource := "" -}}
+{{- if $page.Params.image_mobile -}}
+  {{- $imageSource = $page.Params.image_mobile -}}
+{{- else if $page.Params.cover -}}
+  {{- $imageSource = $page.Params.cover -}}
+{{- end -}}
+
 {{/* 使用通用图片处理器 */}}
-{{- if $page.Params.cover -}}
+{{- if $imageSource -}}
   {{- partial "content/image-processor.html" (dict
     "context" $page
-    "src" $page.Params.cover
+    "src" $imageSource
     "enablePlaceholder" true
     "outputType" "data"
   ) -}}
