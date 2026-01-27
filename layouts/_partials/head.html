@@ -48,10 +48,12 @@ else -}}{{- with site.Params.keywords -}}{{ delimit . ", " }}{{- end -}}{{- end
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 {{ end }}
 
-<link
-  rel="stylesheet"
-  href="/css/glightbox.min.css"
-/>
+<link rel="preload" href="/css/glightbox.min.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="/css/glightbox.min.css">
+</noscript>
+
 <script src="/js/glightbox.min.js" defer></script>
 <script>
   window.addEventListener('load', function(){

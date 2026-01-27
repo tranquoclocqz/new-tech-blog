@@ -40,9 +40,14 @@
 
 {{- if $shouldLoad -}}
   <!-- KaTeX 数学公式支持 -->
-  <link
-    rel="stylesheet"
-    href="/css/katex.min.css" />
+
+  <link rel="preload" href="/css/katex.min.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="/css/katex.min.css">
+</noscript>
+
+
   <script
     defer
     src="/js/katex.min.js"></script>
