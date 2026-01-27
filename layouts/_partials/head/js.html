@@ -121,7 +121,7 @@
     {{ $globalLightbox := site.Params.lightbox | default dict }}
     {{ $lightboxEnabled := $globalLightbox.enabled | default false }}
     {{ if not $lightboxEnabled }}
-      <script src="/js/glightbox.min.js"></script>
+      <script src="/js/glightbox.min.js" defer></script>
     {{ end }}
   {{ end }}
 {{ end }}
