@@ -4,7 +4,7 @@ defaultContentLanguage: vi
 defaultContentLanguageInSubdir: false
 title: "Blog chia sẽ kiến thức, đánh giá, và các theme trong ngành lập trình web từ cơ bản đến nâng cao"
 enableRobotsTXT: true
-
+lightboxEnabled: true
 hasCJKLanguage: true
 enableEmoji: true
 
